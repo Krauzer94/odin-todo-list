@@ -2,10 +2,24 @@ function getMainElement() {
   return document.getElementById('content');
 };
 
-function helloWorld() {
-    const helloWorldElement = document.createElement('h1');
-    helloWorldElement.textContent = "Hello World!";
-    getMainElement().appendChild(helloWorldElement);
+// Home left sidebar rendering
+function homeSideBar() {
+
+  // Container div element
+  const homeSideBarDiv = document.createElement("div");
+  homeSideBarDiv.textContent = "sidebar";
+  getMainElement().appendChild(homeSideBarDiv);
+
 };
 
-export { helloWorld };
+// Home main container rendering
+function homeContent() {
+
+  // Container div element
+  const homeContentDiv = document.createElement("div");
+  homeContentDiv.textContent = "content";
+  getMainElement().appendChild(homeContentDiv);
+
+};
+
+export { homeSideBar, homeContent };
