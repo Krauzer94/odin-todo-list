@@ -1,3 +1,17 @@
+/* HTML general defaults */
 body {
+  /* Fonts */
   font-family: Arial, Helvetica, Verdana, Georgia, sans-serif;
+}
+
+/* Main container defaults */
+#content {
+  display: grid;
+  grid-template-areas:
+    "sidebar container";
+
+  /* Spacing and grid */
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto;
+  min-height: 100vh;
 }
