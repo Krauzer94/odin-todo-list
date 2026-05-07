@@ -1,18 +1,17 @@
 import './style.css';
 
-import { homeSideBar, homeContent } from './home.js';
+import { helloWorld } from './home.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // Loads home for validation
-  function loadHomePage() {
-    homeSideBar();
-    homeContent();
+  function loadHelloWorld() {
+    helloWorld();
   };
 
   // Render home by default
   const mainElement = document.getElementById('content');
   mainElement.id = 'content';
-  loadHomePage();
+  loadHelloWorld();
 
 });
