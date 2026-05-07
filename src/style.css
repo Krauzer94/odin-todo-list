@@ -15,3 +15,15 @@ body {
   grid-template-rows: auto;
   min-height: 100vh;
 }
+
+/* Header and footer */
+header, footer {
+  display: flex;
+  text-align: center;
+}
+
+/* Footer specific */
+footer {
+  align-items: center;
+  justify-content: center;
+}
