@@ -1,29 +1,27 @@
-/* HTML general defaults */
+/* General defaults */
 body {
   /* Fonts */
   font-family: Arial, Helvetica, Verdana, Georgia, sans-serif;
 }
 
-/* Main container defaults */
-#content {
+/* Main container */
+#container {
   display: grid;
-  grid-template-areas:
-    "sidebar container";
 
-  /* Spacing and grid */
+  /* Area specification */
+  grid-template-areas:
+    "header header"
+    "sidebar content"
+    "footer footer";
+
+  /* Spacing and position */
   grid-template-columns: 250px 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
 
-/* Header and footer */
-header, footer {
-  display: flex;
-  text-align: center;
-}
-
-/* Footer specific */
-footer {
-  align-items: center;
-  justify-content: center;
-}
+/* Area assignments */
+header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.content { grid-area: content; }
+footer { grid-area: footer; }
