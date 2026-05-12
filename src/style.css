@@ -25,3 +25,10 @@ header { grid-area: header; }
 .sidebar { grid-area: sidebar; }
 .content { grid-area: content; }
 footer { grid-area: footer; }
+
+/* Sidebar header */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
