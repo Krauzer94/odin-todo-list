@@ -1,17 +1,17 @@
 import './style.css';
 
-import { helloWorld } from './home.js';
+import { loadCreatedTasks } from './tasks.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Loads home for validation
-  function loadHelloWorld() {
-    helloWorld();
+  // Loads created tasks
+  function _loadCreatedTasks() {
+    loadCreatedTasks();
   };
 
-  // Render home by default
+  // Render mock tasks
   const mainElement = document.getElementById('content');
   mainElement.id = 'content';
-  loadHelloWorld();
+  _loadCreatedTasks();
 
 });
