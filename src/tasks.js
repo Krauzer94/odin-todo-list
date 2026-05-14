@@ -77,4 +77,4 @@ function loadCreatedTasks() {
 
 };
 
-export { renderTasks };
+export { loadCreatedTasks };
