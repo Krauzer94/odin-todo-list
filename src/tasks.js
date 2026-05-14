@@ -5,7 +5,12 @@ function getMainElement() {
 
 // Tasks factory function module
 function createTask(title, description, dueDate, priority) {
-  return {title, description, dueDate, priority};
+  return {
+    title,
+    description,
+    dueDate,
+    priority
+  };
 };
 
 // Stora default project tasks
@@ -27,24 +32,23 @@ function renderTasks() {
 
   // Project task list
   const taskList = document.createElement("ul");
-  defaultProjectTasks.forEach((tasks) => {
+  defaultProjectTasks.forEach((task) => {
     const listItem = document.createElement("li");
 
     // All task priorities
     listItem.textContent = 
       `${task.title} | ${task.description} | ${task.dueDate} | ${task.priority}`;
 
-    taskLists.appendChild(listItem);
+    taskList.appendChild(listItem);
   });
 
   mainContent.appendChild(taskList);
 
   // Button event handling
   addTaskButton.addEventListener("click", () => {
-    const newTask = createTAsk(
-      `Task ${defaultProjectTask.length + 1}`,
+    const newTask = createTask(
+      `Task ${defaultProjectTasks.length + 1}`,
       "New task description",
-      "First example task",
       "2026-05-14",
       "High",
     );
@@ -52,29 +56,34 @@ function renderTasks() {
     // Mock task and render
     defaultProjectTasks.push(newTask);
     renderTasks();
-  });
 
+  });
 };
 
 // Initial mock tasks
 function loadCreatedTasks() {
 
-  // First task
-  const taks1 = createNewTask(
+  // Create 1st task
+  const task1 = createTask(
     "Trash disposal",
     "Take out the organic and dry waste",
     "2026-05-19",
     "Low",
   );
 
-  // Second task
-  const taks2 = createNewTask(
+  // Create 2nd task
+  const task2 = createTask(
     "Week groceries",
     "Create a list of groceries to buy",
     "2026-05-16",
     "High",
   );
 
+  // Append both tasks
+  defaultProjectTasks.push(task1);
+  defaultProjectTasks.push(task2);
+
+  renderTasks();
 };
 
 export { loadCreatedTasks };
