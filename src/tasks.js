@@ -20,6 +20,9 @@ const defaultProjectTasks = [];
 function renderTasks() {
   const mainContent = getMainElement();
 
+  // Clear previous render
+  mainContent.replaceChildren();
+
   // Project title
   const projetTitle = document.createElement("h2");
   projetTitle.textContent = "Default Project";
