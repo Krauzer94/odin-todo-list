@@ -56,4 +56,25 @@ function renderTasks() {
 
 };
 
+// Initial mock tasks
+function loadCreatedTasks() {
+
+  // First task
+  const taks1 = createNewTask(
+    "Trash disposal",
+    "Take out the organic and dry waste",
+    "2026-05-19",
+    "Low",
+  );
+
+  // Second task
+  const taks2 = createNewTask(
+    "Week groceries",
+    "Create a list of groceries to buy",
+    "2026-05-16",
+    "High",
+  );
+
+};
+
 export { renderTasks };
