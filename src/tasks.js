@@ -49,16 +49,13 @@ function renderTasks() {
 
   // Button event handling
   addTaskButton.addEventListener("click", () => {
-    const newTask = createTask(
-      `Task ${defaultProjectTasks.length + 1}`,
-      "New task description",
-      "2026-05-14",
-      "High",
-    );
-
-    // Mock task and render
-    defaultProjectTasks.push(newTask);
-    renderTasks();
+    const addTaskDialog = document.getElementById('addTaskDialog');
+    if (addTaskDialog && typeof addTaskDialog.showModal === 'function') {
+      addTaskDialog.showModal();
+    } else if (addTaskDialog) {
+      // Fallback for browsers without dialog support
+      addTaskDialog.setAttribute('open', '');
+    }
 
   });
 };
@@ -87,6 +84,44 @@ function loadCreatedTasks() {
   defaultProjectTasks.push(task2);
 
   renderTasks();
+
+  // Setup dialog form handling once
+  const addTaskDialog = document.getElementById('addTaskDialog');
+  if (addTaskDialog) {
+    const addTaskForm = addTaskDialog.querySelector('.add-task-form');
+    if (addTaskForm) {
+      addTaskForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent form submission
+
+        // Get user input
+        const title = document.getElementById('taskTitle').value.trim();
+        const description = document.getElementById('taskDescription').value.trim();
+        const dueDate = document.getElementById('taskDuedate').value;
+        const priority = document.getElementById('taskPriority').value;
+
+        // Validate input
+        if (!title || !priority) {
+          alert('Please provide a title and priority.');
+          return;
+        }
+
+        // Add new task to project
+        const newTask = createTask(title, description, dueDate, priority);
+        defaultProjectTasks.push(newTask);
+
+        // Close the dialog
+        if (typeof addTaskDialog.close === 'function') {
+          addTaskDialog.close();
+        } else {
+          addTaskDialog.removeAttribute('open');
+        }
+
+        // Reset form and re-render
+        addTaskForm.reset();
+        renderTasks();
+      });
+    }
+  }
 };
 
 export { loadCreatedTasks };
