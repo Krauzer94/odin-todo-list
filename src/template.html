@@ -57,10 +57,11 @@
 
         <!-- Priority: low, medium or high -->
         <div class="task-priority-field">
-          <label for="taskPriority">How important is this?</label>
-
-          <!-- Drop-down priority selector -->
+          <label for="taskPriority">Priority</label>
           <select id="taskPriority" name="taskPriority">
+            <option value="" disabled selected>
+              How important is this task?
+            </option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
