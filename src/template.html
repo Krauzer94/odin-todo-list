@@ -30,6 +30,52 @@
     <!-- Tasks content -->
     <main id="content"></main>
 
+  <!-- Modal for task insertion -->
+  <dialog class="add-task-dialog" id="addTaskDialog">
+    <form class="add-task-form">
+
+      <!-- Task information fields -->
+      <div class="add-task-fields">
+
+        <!-- Title input -->
+        <div class="task-title-field">
+          <label for="taskTitle">Title</label>
+          <input id="taskTitle" name="taskTitle" type="text">
+        </div>
+
+        <!-- Description input -->
+        <div class="task-description-field">
+          <label for="taskDescription">Description</label>
+          <input id="taskDescription" name="taskDescription" type="text">
+        </div>
+
+        <!-- Due date input -->
+        <div class="task-duedate-field">
+          <label for="taskDuedate">Due date</label>
+          <input id="taskDuedate" name="taskDuedate" type="date">
+        </div>
+
+        <!-- Priority: low, medium or high -->
+        <div class="task-priority-field">
+          <label for="taskPriority">How important is this?</label>
+
+          <!-- Drop-down priority selector -->
+          <select id="taskPriority" name="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <!-- Confirm/Cancel buttons -->
+        <div class="add-task-btns-field">
+          <button class="cancel-btn" id="cancelBtn" value="cancel" formmethod="dialog">Cancel</button>
+          <button class="confirm-btn" id="confirmBtn" value="default">Confirm</button>
+        </div>
+
+    </form>
+  </dialog>
+
     <!-- Copyright footer -->
     <footer>
       <p>Copyright © 2026 | <a class="copyright-link" href="https://github.com/Krauzer94/odin-todo-list" target="_blank">Krauzer94</a></p>
