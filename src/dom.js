@@ -1,0 +1,71 @@
+// Internal private state
+let _dialogEl = null;
+let _formEl = null;
+let _initialized = false;
+
+// Initialize modal handlers
+function initAddTaskModal({ onSubmit } = {}) {
+
+  // Cache elements
+  _dialogEl = document.getElementById('addTaskDialog');
+  _formEl = _dialogEl.querySelector('.add-task-form');
+
+  // Basic validation
+  if (!_dialogEl) return;
+  if (!_formEl) return;
+  if (_initialized) return;
+
+  // Handle form submission
+  _formEl.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevent form submission
+
+    // Get user input
+    const title = document.getElementById('taskTitle').value.trim();
+    const description = document.getElementById('taskDescription').value.trim();
+    const dueDate = document.getElementById('taskDuedate').value;
+    const priority = document.getElementById('taskPriority').value;
+
+    // Validate input
+    if (!title || !priority) {
+      alert('Please provide the required fields.');
+      return;
+    }
+
+    // Add new task to project
+    const task = { title, description, dueDate, priority };
+
+    // Invoke callback if provided
+    if (typeof onSubmit === 'function') {
+      onSubmit(task);
+    }
+
+    // Close modal and reset form
+    if (typeof _dialogEl.close === 'function') {
+      _dialogEl.close();
+    } else {
+      _dialogEl.removeAttribute('open');
+    }
+
+    // Reset form fields
+    _formEl.reset();
+
+  });
+
+  // Mark as initialized
+  _initialized = true;
+}
+
+// Show the add task modal
+function showAddTaskModal() {
+
+  // Ensure modal is initialized
+  if (!_dialogEl) _dialogEl = document.getElementById('addTaskDialog');
+  if (!_dialogEl) return;
+  if (typeof _dialogEl.showModal === 'function') {
+    _dialogEl.showModal();
+  } else {
+    _dialogEl.setAttribute('open', '');
+  }
+};
+
+export { initAddTaskModal, showAddTaskModal };
