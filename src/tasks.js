@@ -41,10 +41,18 @@ function renderTasks() {
     const listItem = document.createElement("li");
 
     // All task priorities
-    listItem.textContent = 
-      `${task.title} | ${task.description} | ${task.dueDate} | ${task.priority}`;
+    const taskDetails = document.createElement("span");
+    taskDetails.textContent = `${task.title} | ${task.description} | ${task.dueDate} | ${task.priority}`;
 
+    // Delete button for each task
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "❌";
+
+    // Handle task deletion
+    listItem.appendChild(taskDetails);
+    listItem.appendChild(deleteButton);
     taskList.appendChild(listItem);
+
   });
 
   mainContent.appendChild(taskList);
