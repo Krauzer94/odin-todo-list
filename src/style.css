@@ -1,4 +1,4 @@
-/* General defaults */
+* General defaults */
 body {
   /* Fonts */
   font-family: Arial, Helvetica, Verdana, Georgia, sans-serif;
@@ -23,7 +23,7 @@ body {
 /* Area assignments */
 header { grid-area: header; }
 .sidebar { grid-area: sidebar; }
-.content { grid-area: content; }
+#content { grid-area: content; }
 footer { grid-area: footer; }
 
 /* Sidebar header */
