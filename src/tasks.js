@@ -37,7 +37,7 @@ function renderTasks() {
 
   // Project task list
   const taskList = document.createElement("ul");
-  defaultProjectTasks.forEach((task) => {
+  defaultProjectTasks.forEach((task, index) => {
     const listItem = document.createElement("li");
 
     // All task priorities
@@ -49,6 +49,11 @@ function renderTasks() {
     deleteButton.textContent = "❌";
 
     // Handle task deletion
+    deleteButton.addEventListener("click", () => {
+      deleteTask(index);
+    });
+    
+    // Add elements to the DOM
     listItem.appendChild(taskDetails);
     listItem.appendChild(deleteButton);
     taskList.appendChild(listItem);
@@ -64,7 +69,7 @@ function renderTasks() {
   });
 };
 
-// Initial mock tasks
+// Load created tasks contents
 function loadCreatedTasks() {
 
   // Create 1st task
@@ -103,4 +108,10 @@ function loadCreatedTasks() {
   });
 };
 
-export { loadCreatedTasks };
+// Delete a previously created task
+function deleteTask(index) {
+  defaultProjectTasks.splice(index, 1);
+  renderTasks();
+};
+
+export { loadCreatedTasks, deleteTask };
