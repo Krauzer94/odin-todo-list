@@ -24,21 +24,8 @@ function initAddTaskModal({ onSubmit } = {}) {
 
   // Function to close the modal
   function closeAddTaskModal() {
-    if (!_dialogEl) _dialogEl = document.getElementById('addTaskDialog');
-    if (!_formEl && _dialogEl) _formEl = _dialogEl.querySelector('.add-task-form');
-    if (!_dialogEl) return;
-
-    // Close the dialog
-    if (typeof _dialogEl.close === 'function') {
-      _dialogEl.close();
-    } else {
-      _dialogEl.removeAttribute('open');
-    }
-
-    // Reset form fields
-    if (_formEl) {
-      _formEl.reset();
-    }
+    _dialogEl.close();
+    _formEl.reset();
   }
 
   // Handle form submission
