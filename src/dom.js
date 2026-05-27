@@ -15,6 +15,25 @@ function initAddTaskModal({ onSubmit } = {}) {
   if (!_formEl) return;
   if (_initialized) return;
 
+  // Function to close the modal
+  function closeAddTaskModal() {
+    if (!_dialogEl) _dialogEl = document.getElementById('addTaskDialog');
+    if (!_formEl && _dialogEl) _formEl = _dialogEl.querySelector('.add-task-form');
+    if (!_dialogEl) return;
+
+    // Close the dialog
+    if (typeof _dialogEl.close === 'function') {
+      _dialogEl.close();
+    } else {
+      _dialogEl.removeAttribute('open');
+    }
+
+    // Reset form fields
+    if (_formEl) {
+      _formEl.reset();
+    }
+  }
+
   // Handle form submission
   _formEl.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent form submission
@@ -39,17 +58,27 @@ function initAddTaskModal({ onSubmit } = {}) {
       onSubmit(task);
     }
 
-    // Close modal and reset form
-    if (typeof _dialogEl.close === 'function') {
-      _dialogEl.close();
-    } else {
-      _dialogEl.removeAttribute('open');
-    }
-
-    // Reset form fields
-    _formEl.reset();
+    // Close after submission
+    closeAddTaskModal();
 
   });
+
+  // Handle cancel and close buttons
+  const cancelButton = document.getElementById('cancelBtn');
+  const closeButton = document.getElementById('closeModalBtn');
+
+  // Close button without submitting
+  if (cancelButton) {
+    cancelButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeAddTaskModal();
+    });
+  }
+
+  // Exit button without submitting
+  if (closeButton) {
+    closeButton.addEventListener('click', closeAddTaskModal);
+  }
 
   // Mark as initialized
   _initialized = true;
