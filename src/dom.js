@@ -11,11 +11,7 @@ function initAddTaskModal({ onSubmit } = {}) {
   _formEl = _dialogEl.querySelector('.add-task-form');
 
   // Reset when dialog closes
-  _dialogEl.addEventListener('close', () => {
-    if (_formEl) {
-      _formEl.reset();
-    }
-  });
+  _dialogEl.addEventListener('close', () => { _formEl.reset(); });
 
   // Basic validation
   if (!_dialogEl) return;
