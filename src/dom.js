@@ -10,6 +10,13 @@ function initAddTaskModal({ onSubmit } = {}) {
   _dialogEl = document.getElementById('addTaskDialog');
   _formEl = _dialogEl.querySelector('.add-task-form');
 
+  // Reset when dialog closes
+  _dialogEl.addEventListener('close', () => {
+    if (_formEl) {
+      _formEl.reset();
+    }
+  });
+
   // Basic validation
   if (!_dialogEl) return;
   if (!_formEl) return;
@@ -82,7 +89,7 @@ function initAddTaskModal({ onSubmit } = {}) {
 
   // Mark as initialized
   _initialized = true;
-}
+};
 
 // Show the add task modal
 function showAddTaskModal() {
