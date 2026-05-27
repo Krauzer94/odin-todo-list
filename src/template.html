@@ -33,6 +33,9 @@
     <!-- Modal for task insertion -->
     <dialog class="add-task-dialog" id="addTaskDialog">
       <form class="add-task-form">
+        <div class="dialog-header">
+          <button class="close-modal-btn" id="closeModalBtn" type="button">×</button>
+        </div>
 
         <!-- Task information fields -->
         <div class="add-task-fields">
@@ -70,7 +73,7 @@
 
           <!-- Confirm/Cancel buttons -->
           <div class="add-task-btns-field">
-            <button class="cancel-btn" id="cancelBtn" value="cancel" formmethod="dialog">Cancel</button>
+            <button class="cancel-btn" id="cancelBtn" type="button">Cancel</button>
             <button class="confirm-btn" id="confirmBtn" value="default">Confirm</button>
           </div>
 
