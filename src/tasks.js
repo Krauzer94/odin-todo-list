@@ -1,4 +1,4 @@
-import { initAddTaskModal, showAddTaskModal } from './dom.js';
+import { initAddTaskModal, showAddTaskModal, showEditTaskModal } from './dom.js';
 
 // Get main content element
 function getMainElement() {
@@ -44,6 +44,15 @@ function renderTasks() {
     const taskDetails = document.createElement("span");
     taskDetails.textContent = `${task.title} | ${task.description} | ${task.dueDate} | ${task.priority}`;
 
+    // Edit button for each task
+    const editButton = document.createElement("button");
+    editButton.textContent = "✏️";
+
+    // Handle task editing
+    editButton.addEventListener("click", () => {
+      showEditTaskModal(task, index);
+    });
+
     // Delete button for each task
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "❌";
@@ -52,9 +61,10 @@ function renderTasks() {
     deleteButton.addEventListener("click", () => {
       deleteTask(index);
     });
-    
+
     // Add elements to the DOM
     listItem.appendChild(taskDetails);
+    listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
     taskList.appendChild(listItem);
 
@@ -97,15 +107,32 @@ function loadCreatedTasks() {
   // Initialize modal handlers
   initAddTaskModal({
     onSubmit: (task) => {
-      defaultProjectTasks.push(createTask(
-        task.title,
-        task.description,
-        task.dueDate,
-        task.priority
-      ));
-      renderTasks();
+      if (task.editingIndex !== null) {
+        editTask(task.editingIndex, task);
+      } else {
+        defaultProjectTasks.push(createTask(
+          task.title,
+          task.description,
+          task.dueDate,
+          task.priority
+        ));
+        renderTasks();
+      }
     }
   });
+};
+
+// Edit a previously created task
+function editTask(index, updatedTask) {
+  defaultProjectTasks[index] = createTask(
+    updatedTask.title,
+    updatedTask.description,
+    updatedTask.dueDate,
+    updatedTask.priority,
+  );
+
+  // Re-render after editing
+  renderTasks();
 };
 
 // Delete a previously created task
