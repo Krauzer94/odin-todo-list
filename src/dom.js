@@ -3,6 +3,7 @@ let _dialogEl = null;
 let _formEl = null;
 let _initialized = false;
 let _editingIndex = null;
+let _detailsDialogEl = null;
 
 // Modal handlers
 function initAddTaskModal({ onSubmit } = {}) {
@@ -106,6 +107,22 @@ function showEditTaskModal(task, index) {
   document.getElementById('taskDuedate').value = task.dueDate;
   document.getElementById('taskPriority').value = task.priority.toLowerCase();
   showAddTaskModal();
+};
+
+// Initialize task details modal
+function initTaskDetailsModal() {
+
+  // Cache elements
+  _detailsDialogEl = document.getElementById('taskDetailsDialog');
+  if (!_detailsDialogEl) return;
+  const closeButton = document.getElementById('closeDetailsBtn');
+
+  // Close the dialog
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
+      _detailsDialogEl.close();
+    });
+  }
 };
 
 export { 
