@@ -115,14 +115,13 @@ function initTaskDetailsModal() {
   // Cache elements
   _detailsDialogEl = document.getElementById('taskDetailsDialog');
   if (!_detailsDialogEl) return;
-  const closeButton = document.getElementById('closeDetailsBtn');
+  const closeBtn = document.getElementById('closeDetailsBtn');
+  const footerCloseBtn = document.getElementById('detailsCloseBtn');
 
-  // Close the dialog
-  if (closeButton) {
-    closeButton.addEventListener('click', () => {
-      _detailsDialogEl.close();
-    });
-  }
+  // Close events handling
+  function closeTaskDetailsModal() { _detailsDialogEl.close(); }
+  if (closeBtn) { closeBtn.addEventListener('click', closeTaskDetailsModal); }
+  if (footerCloseBtn) { footerCloseBtn.addEventListener('click', closeTaskDetailsModal); }
 };
 
 // Show task details dialog
