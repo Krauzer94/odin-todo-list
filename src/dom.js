@@ -2,6 +2,7 @@
 let _dialogEl = null;
 let _formEl = null;
 let _initialized = false;
+let _editingIndex = null;
 
 // Initialize modal handlers
 function initAddTaskModal({ onSubmit } = {}) {
@@ -20,6 +21,7 @@ function initAddTaskModal({ onSubmit } = {}) {
 
   // Function to close the modal
   function closeAddTaskModal() {
+    _editingIndex = null;
     _dialogEl.close();
     _formEl.reset();
   }
@@ -41,7 +43,13 @@ function initAddTaskModal({ onSubmit } = {}) {
     }
 
     // Add new task to project
-    const task = { title, description, dueDate, priority };
+    const task = {
+      title,
+      description,
+      dueDate,
+      priority,
+      editingIndex: _editingIndex
+    };
 
     // Invoke callback if provided
     if (typeof onSubmit === 'function') {
@@ -87,4 +95,24 @@ function showAddTaskModal() {
   }
 };
 
-export { initAddTaskModal, showAddTaskModal };
+// Show the edit task modal
+function showEditTaskModal(task, index) {
+
+  // Locate element by index
+  _editingIndex = index;
+
+  // Get exsiting input
+  document.getElementById('taskTitle').value = task.title;
+  document.getElementById('taskDescription').value = task.description;
+  document.getElementById('taskDuedate').value = task.dueDate;
+  document.getElementById('taskPriority').value = task.priority.toLowerCase();
+
+  // Display the modal
+  showAddTaskModal();
+};
+
+export { 
+  initAddTaskModal,
+  showAddTaskModal,
+  showEditTaskModal
+};
