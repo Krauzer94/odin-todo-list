@@ -1,28 +1,23 @@
 import { initAddTaskModal, showAddTaskModal, showEditTaskModal } from './dom.js';
 
-// Get main content element
+// Get main content
 function getMainElement() {
   return document.getElementById('content');
 };
 
 // Tasks factory function module
 function createTask(title, description, dueDate, priority) {
-  return {
-    title,
-    description,
-    dueDate,
-    priority
-  };
+  return { title, description, dueDate, priority };
 };
 
-// Stora default project tasks
+// Store default project
 const defaultProjectTasks = [];
 
-// Render all available tasks
+// Render available tasks
 function renderTasks() {
-  const mainContent = getMainElement();
 
-  // Clear previous render
+  // Cache and clear
+  const mainContent = getMainElement();
   mainContent.replaceChildren();
 
   // Project title
@@ -44,38 +39,31 @@ function renderTasks() {
     const taskDetails = document.createElement("span");
     taskDetails.textContent = `${task.title} | ${task.description} | ${task.dueDate} | ${task.priority}`;
 
-    // Edit button for each task
+    // Edit element operation
     const editButton = document.createElement("button");
     editButton.textContent = "✏️";
-
-    // Handle task editing
     editButton.addEventListener("click", () => {
       showEditTaskModal(task, index);
     });
 
-    // Delete button for each task
+    // Delete element operation
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "❌";
-
-    // Handle task deletion
     deleteButton.addEventListener("click", () => {
       deleteTask(index);
     });
 
-    // Add elements to the DOM
+    // DOM manipulation handling
     listItem.appendChild(taskDetails);
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
     taskList.appendChild(listItem);
-
   });
-
   mainContent.appendChild(taskList);
 
   // Button event handling
   addTaskButton.addEventListener("click", () => {
     showAddTaskModal();
-
   });
 };
 

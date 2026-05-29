@@ -4,22 +4,24 @@ let _formEl = null;
 let _initialized = false;
 let _editingIndex = null;
 
-// Initialize modal handlers
+// Modal handlers
 function initAddTaskModal({ onSubmit } = {}) {
 
   // Cache elements
   _dialogEl = document.getElementById('addTaskDialog');
   _formEl = _dialogEl.querySelector('.add-task-form');
 
-  // Reset when dialog closes
-  _dialogEl.addEventListener('close', () => { _formEl.reset(); });
+  // Reset on close
+  _dialogEl.addEventListener('close', () => {
+    _formEl.reset();
+  });
 
   // Basic validation
   if (!_dialogEl) return;
   if (!_formEl) return;
   if (_initialized) return;
 
-  // Function to close the modal
+  // Modal close event
   function closeAddTaskModal() {
     _editingIndex = null;
     _dialogEl.close();
@@ -28,7 +30,9 @@ function initAddTaskModal({ onSubmit } = {}) {
 
   // Handle form submission
   _formEl.addEventListener('submit', (e) => {
-    e.preventDefault(); // Prevent form submission
+
+    // Prevent submission
+    e.preventDefault();
 
     // Get user input
     const title = document.getElementById('taskTitle').value.trim();
@@ -36,13 +40,13 @@ function initAddTaskModal({ onSubmit } = {}) {
     const dueDate = document.getElementById('taskDuedate').value;
     const priority = document.getElementById('taskPriority').value;
 
-    // Validate input
+    // Validate required
     if (!title || !priority) {
       alert('Please provide the required fields.');
       return;
     }
 
-    // Add new task to project
+    // Push to project
     const task = {
       title,
       description,
@@ -51,21 +55,20 @@ function initAddTaskModal({ onSubmit } = {}) {
       editingIndex: _editingIndex
     };
 
-    // Invoke callback if provided
+    // Invoke callback
     if (typeof onSubmit === 'function') {
       onSubmit(task);
     }
 
-    // Close after submission
+    // Close on submit
     closeAddTaskModal();
-
   });
 
-  // Handle cancel and close buttons
+  // Cancel operations
   const cancelButton = document.getElementById('cancelBtn');
   const closeButton = document.getElementById('closeModalBtn');
 
-  // Close button without submitting
+  // Close submission
   if (cancelButton) {
     cancelButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -73,7 +76,7 @@ function initAddTaskModal({ onSubmit } = {}) {
     });
   }
 
-  // Exit button without submitting
+  // Exit submission
   if (closeButton) {
     closeButton.addEventListener('click', closeAddTaskModal);
   }
@@ -82,7 +85,7 @@ function initAddTaskModal({ onSubmit } = {}) {
   _initialized = true;
 };
 
-// Show the add task modal
+// Show add task modal
 function showAddTaskModal() {
 
   // Ensure modal is initialized
@@ -95,19 +98,13 @@ function showAddTaskModal() {
   }
 };
 
-// Show the edit task modal
+// Show edit task modal
 function showEditTaskModal(task, index) {
-
-  // Locate element by index
   _editingIndex = index;
-
-  // Get exsiting input
   document.getElementById('taskTitle').value = task.title;
   document.getElementById('taskDescription').value = task.description;
   document.getElementById('taskDuedate').value = task.dueDate;
   document.getElementById('taskPriority').value = task.priority.toLowerCase();
-
-  // Display the modal
   showAddTaskModal();
 };
 
