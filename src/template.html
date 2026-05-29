@@ -30,7 +30,7 @@
     <!-- Tasks content -->
     <main id="content"></main>
 
-    <!-- Modal for task insertion -->
+    <!-- Modal to add or edit a task -->
     <dialog class="add-task-dialog" id="addTaskDialog">
       <form class="add-task-form">
         <div class="dialog-header">
@@ -78,6 +78,49 @@
           </div>
 
       </form>
+    </dialog>
+
+    <!-- Modal for task details -->
+    <dialog class="task-details-dialog" id="taskDetailsDialog">
+      <div class="task-details-content">
+        <div class="dialog-header">
+          <button class="close-modal-btn" id="closeDetailsBtn" type="button">×</button>
+        </div>
+
+        <!-- Task information fields -->
+        <div class="task-details-fields">
+
+          <!-- Title field -->
+          <div class="task-title-field">
+            <label>Title</label>
+            <p id="detailsTitle"></p>
+          </div>
+
+          <!-- Description field -->
+          <div class="task-description-field">
+            <label>Description</label>
+            <p id="detailsDescription"></p>
+          </div>
+
+          <!-- Due date field -->
+          <div class="task-duedate-field">
+            <label>Due date</label>
+            <p id="detailsDueDate"></p>
+          </div>
+
+          <!-- Priority field -->
+          <div class="task-priority-field">
+            <label>Priority</label>
+            <p id="detailsPriority"></p>
+          </div>
+
+          <!-- Close dialog button -->
+          <div class="add-task-btns-field">
+            <button class="confirm-btn" id="detailsCloseBtn" type="button">Close</button>
+          </div>
+        </div>
+
+      </div>
     </dialog>
 
     <!-- Copyright footer -->
