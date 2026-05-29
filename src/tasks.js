@@ -1,4 +1,10 @@
-import { initAddTaskModal, showAddTaskModal, showEditTaskModal } from './dom.js';
+import {
+  initAddTaskModal,
+  showAddTaskModal,
+  showEditTaskModal,
+  initTaskDetailsModal,
+  showTaskDetailsModal
+} from './dom.js';
 
 // Get main content
 function getMainElement() {
@@ -53,10 +59,18 @@ function renderTasks() {
       deleteTask(index);
     });
 
+    // Details info operation
+    const detailsButton = document.createElement("button");
+    detailsButton.textContent = "ℹ️";
+    detailsButton.addEventListener("click", () => {
+      showTaskDetailsModal(task);
+    });
+
     // DOM manipulation handling
     listItem.appendChild(taskDetails);
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
+    listItem.appendChild(detailsButton);
     taskList.appendChild(listItem);
   });
   mainContent.appendChild(taskList);
@@ -91,6 +105,7 @@ function loadCreatedTasks() {
   defaultProjectTasks.push(task2);
 
   renderTasks();
+  initTaskDetailsModal();
 
   // Initialize modal handlers
   initAddTaskModal({
