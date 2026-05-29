@@ -125,8 +125,30 @@ function initTaskDetailsModal() {
   }
 };
 
+// Show task details dialog
+function showTaskDetailsModal(task) {
+
+  // Check existing element
+  if (!_detailsDialogEl) {
+    _detailsDialogEl = document.getElementById('taskDetailsDialog');
+  }
+  if (!_detailsDialogEl) return;
+
+  // Fetch information
+  document.getElementById('detailsTitle').textContent = task.title;
+  document.getElementById('detailsDescription').textContent = task.description || 'No description';
+  document.getElementById('detailsDueDate').textContent = task.dueDate || 'No due date';
+  document.getElementById('detailsPriority').textContent = task.priority;
+
+  // Display information
+  _detailsDialogEl.showModal();
+
+};
+
 export { 
   initAddTaskModal,
   showAddTaskModal,
-  showEditTaskModal
+  showEditTaskModal,
+  initTaskDetailsModal,
+  showTaskDetailsModal
 };
