@@ -116,7 +116,7 @@ function initTaskDetailsModal() {
   _detailsDialogEl = document.getElementById('taskDetailsDialog');
   if (!_detailsDialogEl) return;
 
-  // TODO: rename the footer close button to CANCEL
+  // Close buttons
   const closeDetailsBtn = document.getElementById('closeDetailsBtn');
   const detailsCloseBtn = document.getElementById('detailsCloseBtn');
 
