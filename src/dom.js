@@ -117,13 +117,13 @@ function initTaskDetailsModal() {
   if (!_detailsDialogEl) return;
 
   // TODO: rename the footer close button to CANCEL
-  const closeBtn = document.getElementById('closeDetailsBtn');
-  const footerCloseBtn = document.getElementById('detailsCloseBtn');
+  const closeDetailsBtn = document.getElementById('closeDetailsBtn');
+  const detailsCloseBtn = document.getElementById('detailsCloseBtn');
 
   // Close events handling
   function closeTaskDetailsModal() { _detailsDialogEl.close(); }
-  if (closeBtn) { closeBtn.addEventListener('click', closeTaskDetailsModal); }
-  if (footerCloseBtn) { footerCloseBtn.addEventListener('click', closeTaskDetailsModal); }
+  if (closeDetailsBtn) { closeDetailsBtn.addEventListener('click', closeTaskDetailsModal); }
+  if (detailsCloseBtn) { detailsCloseBtn.addEventListener('click', closeTaskDetailsModal); }
 };
 
 // Show task details dialog
