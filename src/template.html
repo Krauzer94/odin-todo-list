@@ -123,6 +123,31 @@
       </div>
     </dialog>
 
+    <!-- Modal to add a new project -->
+    <dialog class="add-project-dialog" id="addProjectDialog">
+      <form class="add-project-form">
+        <div class="dialog-header">
+          <button class="close-modal-btn" id="addProjectCloseBtn" type="button">×</button>
+        </div>
+
+        <!-- Project information fields -->
+        <div class="add-project-fields">
+
+          <!-- Title input -->
+          <div class="project-title-field">
+            <label for="projectTitle">Title</label>
+            <input id="projectTitle" name="projectTitle" type="text" required>
+          </div>
+
+          <!-- Cancel/Confirm buttons -->
+          <div class="add-task-btns-field">
+            <button class="cancel-btn" id="addProjectCancelBtn" type="button">Cancel</button>
+            <button class="confirm-btn" id="addProjectConfirmBtn" value="default">Confirm</button>
+          </div>
+
+      </form>
+    </dialog>
+
     <!-- Copyright footer -->
     <footer>
       <p>Copyright © 2026 | <a class="copyright-link" href="https://github.com/Krauzer94/odin-todo-list" target="_blank">Krauzer94</a></p>
