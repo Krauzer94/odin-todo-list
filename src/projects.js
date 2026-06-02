@@ -1,6 +1,6 @@
 // Get sidebar projects element
 function getSidebarProjectsEl() {
-    return document.querySelector('sidebar-projects');
+    return document.querySelector('.sidebar-projects');
 };
 
 // Projects factory function module
