@@ -118,12 +118,12 @@ function initTaskDetailsModal() {
 
   // Close buttons
   const closeDetailsBtn = document.getElementById('closeDetailsBtn');
-  const detailsCloseBtn = document.getElementById('detailsCloseBtn');
+  const detailsCancelBtn = document.getElementById('detailsCancelBtn');
 
   // Close events handling
   function closeTaskDetailsModal() { _detailsDialogEl.close(); }
   if (closeDetailsBtn) { closeDetailsBtn.addEventListener('click', closeTaskDetailsModal); }
-  if (detailsCloseBtn) { detailsCloseBtn.addEventListener('click', closeTaskDetailsModal); }
+  if (detailsCancelBtn) { detailsCancelBtn.addEventListener('click', closeTaskDetailsModal); }
 };
 
 // Show task details dialog
