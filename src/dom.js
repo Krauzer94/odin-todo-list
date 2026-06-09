@@ -1,9 +1,27 @@
+import { getProjects } from './projects.js';
+
 // Internal private state
 let _dialogEl = null;
 let _formEl = null;
 let _initialized = false;
 let _editingIndex = null;
 let _detailsDialogEl = null;
+
+// Render projects in sidebar
+function renderProjects() {
+
+  // Clear existing projects
+  const sidebarProjectsEl = document.querySelector('.sidebar-projects');
+  sidebarProjectsEl.textContent = '';
+
+  // Render each project
+  getProjects().forEach((project, index) => {
+    const projectDiv = document.createElement('div');
+    projectDiv.textContent = project.title;
+    projectDiv.dataset.projectIndex = index;
+    sidebarProjectsEl.appendChild(projectDiv);
+  });
+};
 
 // Modal handlers
 function initAddTaskModal({ onSubmit } = {}) {
@@ -147,6 +165,7 @@ function showTaskDetailsModal(task) {
 };
 
 export { 
+  renderProjects,
   initAddTaskModal,
   showAddTaskModal,
   showEditTaskModal,
