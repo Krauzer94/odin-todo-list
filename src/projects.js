@@ -9,7 +9,7 @@ function getSidebarProjectsEl() {
 function createProject(title) {
   return {
     title,
-    tasks: []
+    tasks: [],
   };
 }
 
@@ -25,8 +25,4 @@ function getProjects() {
   return projects;
 }
 
-export {
-  addProject,
-  getProjects,
-  createProject
-};
+export { addProject, getProjects, createProject };

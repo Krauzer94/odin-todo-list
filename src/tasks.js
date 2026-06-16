@@ -3,25 +3,24 @@ import {
   showAddTaskModal,
   showEditTaskModal,
   initTaskDetailsModal,
-  showTaskDetailsModal
-} from './dom.js';
+  showTaskDetailsModal,
+} from "./dom.js";
 
 // Get main content
 function getMainElement() {
-  return document.getElementById('content');
-};
+  return document.getElementById("content");
+}
 
 // Tasks factory function module
 function createTask(title, description, dueDate, priority) {
   return { title, description, dueDate, priority };
-};
+}
 
 // Store default project
 const defaultProjectTasks = [];
 
 // Render available tasks
 function renderTasks() {
-
   // Cache and clear
   const mainContent = getMainElement();
   mainContent.replaceChildren();
@@ -79,11 +78,10 @@ function renderTasks() {
   addTaskButton.addEventListener("click", () => {
     showAddTaskModal();
   });
-};
+}
 
 // Load created tasks contents
 function loadCreatedTasks() {
-
   // Create 1st task
   const task1 = createTask(
     "Trash disposal",
@@ -113,17 +111,14 @@ function loadCreatedTasks() {
       if (task.editingIndex !== null) {
         editTask(task.editingIndex, task);
       } else {
-        defaultProjectTasks.push(createTask(
-          task.title,
-          task.description,
-          task.dueDate,
-          task.priority
-        ));
+        defaultProjectTasks.push(
+          createTask(task.title, task.description, task.dueDate, task.priority),
+        );
         renderTasks();
       }
-    }
+    },
   });
-};
+}
 
 // Edit a previously created task
 function editTask(index, updatedTask) {
@@ -136,12 +131,12 @@ function editTask(index, updatedTask) {
 
   // Re-render after editing
   renderTasks();
-};
+}
 
 // Delete a previously created task
 function deleteTask(index) {
   defaultProjectTasks.splice(index, 1);
   renderTasks();
-};
+}
 
 export { loadCreatedTasks, deleteTask };
