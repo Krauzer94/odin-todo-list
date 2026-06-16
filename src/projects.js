@@ -1,4 +1,5 @@
 const projects = [];
+let currentProjectIndex = 0;
 
 // Get sidebar projects element
 function getSidebarProjectsEl() {
@@ -8,6 +9,7 @@ function getSidebarProjectsEl() {
 // Projects factory module
 function createProject(title) {
   return {
+    id: Date.now(), // Unique ID for each project
     title,
     tasks: [],
   };
@@ -23,6 +25,16 @@ function addProject(title) {
 // Get all projects
 function getProjects() {
   return projects;
+}
+
+// Get project by index
+function getProject(index) {
+  return projects[index];
+}
+
+// Get current project
+function getCurrentProject(index) {
+  return projects[currentProjectIndex];
 }
 
 export { addProject, getProjects, createProject };
