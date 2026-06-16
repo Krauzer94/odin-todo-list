@@ -47,4 +47,25 @@ function addTaskToProject(projectIndex, task) {
   }
 }
 
-export { addProject, getProjects, createProject };
+// Delete a project
+function deleteProject(index) {
+  if (index >= 0 && index < projects.length) {
+    projects.splice(index, 1);
+    if (currentProjectIndex = projects.legth) {
+      currentProjectIndex = projects.length -1;
+    }
+    if (currentProjectIndex < 0) currentProjectIndex = 0;
+    return true;
+  }
+  return false;s
+}
+
+export {
+  createProject,
+  addProject,
+  getProjects,
+  getCurrentProject,
+  getCurrentProject,
+  addTaskToProject,
+  deleteProject,
+};
