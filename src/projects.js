@@ -65,7 +65,6 @@ export {
   addProject,
   getProjects,
   getCurrentProject,
-  getCurrentProject,
   addTaskToProject,
   deleteProject,
 };
