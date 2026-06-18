@@ -33,14 +33,14 @@ function getProject(index) {
 }
 
 // Get current project
-function getCurrentProject(index) {
+function getCurrentProject() {
   return projects[currentProjectIndex];
 }
 
 // Add task to specific project
 function addTaskToProject(projectIndex, task) {
   if (projectIndex >= 0 && projectIndex < projects.length) {
-    projects[projectIndex].task.push(task);
+    projects[projectIndex].tasks.push(task);
     return true;
   } else {
     return false;
