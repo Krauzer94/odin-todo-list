@@ -51,13 +51,13 @@ function addTaskToProject(projectIndex, task) {
 function deleteProject(index) {
   if (index >= 0 && index < projects.length) {
     projects.splice(index, 1);
-    if (currentProjectIndex = projects.legth) {
+    if (currentProjectIndex === projects.length) {
       currentProjectIndex = projects.length -1;
     }
     if (currentProjectIndex < 0) currentProjectIndex = 0;
     return true;
   }
-  return false;s
+  return false;
 }
 
 export {
