@@ -4,7 +4,7 @@ import {
   showEditTaskModal,
   initTaskDetailsModal,
   showTaskDetailsModal,
-} from "./dom.js";
+} from "./tasks-dom.js";
 
 // Get main content
 function getMainElement() {
