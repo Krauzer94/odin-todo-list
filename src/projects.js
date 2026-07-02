@@ -15,6 +15,15 @@ function createProject(title) {
   };
 }
 
+// Initialize default project
+function initDefaultProject() {
+  if (projects.length === 0) {
+    const defaultProject = createProject("First Project");
+    projects.push(defaultProject);
+    currentProjectIndex = 0;
+  }
+}
+
 // Add new project
 function addProject(title) {
   const project = createProject(title);
@@ -34,6 +43,9 @@ function getProject(index) {
 
 // Get current project
 function getCurrentProject() {
+  if (projects.length === 0) {
+    initDefaultProject;
+  }
   return projects[currentProjectIndex];
 }
 
@@ -50,6 +62,13 @@ function addTaskToProject(projectIndex, task) {
 // Delete a project
 function deleteProject(index) {
   if (index >= 0 && index < projects.length) {
+
+    // Prevent Default Project deletion
+    if (project.length <= 1) {
+      return false;
+    }
+    
+    // Delete the specified project
     projects.splice(index, 1);
     if (currentProjectIndex === projects.length) {
       currentProjectIndex = projects.length -1;
