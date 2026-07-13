@@ -1,15 +1,10 @@
 const projects = [];
 let currentProjectIndex = 0;
 
-// Get sidebar projects element
-function getSidebarProjectsEl() {
-  return document.querySelector(".sidebar-projects");
-}
-
 // Projects factory module
 function createProject(title) {
   return {
-    id: Date.now(), // Unique ID for each project
+    id: Date.now(),
     title,
     tasks: [],
   };
@@ -24,42 +19,47 @@ function initDefaultProject() {
   }
 }
 
-// Add new project
+// Add a new project
 function addProject(title) {
   const project = createProject(title);
   projects.push(project);
+
+  // Automatically switch to new project
+  currentProjectIndex = projects.length - 1;
+
   return project;
 }
 
 // Get all projects
 function getProjects() {
+  // Create default if empty
+  if (projects.length === 0) {
+    initDefaultProject();
+  }
   return projects;
-}
-
-// Get project by index
-function getProject(index) {
-  return projects[index];
 }
 
 // Get current project
 function getCurrentProject() {
   if (projects.length === 0) {
-    initDefaultProject;
+    initDefaultProject();
   }
   return projects[currentProjectIndex];
 }
 
-// Add task to specific project
-function addTaskToProject(projectIndex, task) {
-  if (projectIndex >= 0 && projectIndex < projects.length) {
-    projects[projectIndex].tasks.push(task);
-    return true;
-  } else {
-    return false;
+// Set active project by index
+function setCurrentProjectIndex(index) {
+  if (index >= 0 && index < projects.length) {
+    currentProjectIndex = index;
   }
 }
 
-// Delete a project
+// Get current project index
+function getCurrentProjectIndex() {
+  return currentProjectIndex;
+}
+
+// Delete a specific project
 function deleteProject(index) {
   if (index >= 0 && index < projects.length) {
 
@@ -73,17 +73,15 @@ function deleteProject(index) {
     if (currentProjectIndex === projects.length) {
       currentProjectIndex = projects.length -1;
     }
-    if (currentProjectIndex < 0) currentProjectIndex = 0;
     return true;
   }
   return false;
 }
 
 export {
-  createProject,
   addProject,
   getProjects,
   getCurrentProject,
-  addTaskToProject,
+  getCurrentProjectIndex,
   deleteProject,
 };
