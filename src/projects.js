@@ -82,6 +82,7 @@ export {
   addProject,
   getProjects,
   getCurrentProject,
+  setCurrentProjectIndex,
   getCurrentProjectIndex,
   deleteProject,
 };
