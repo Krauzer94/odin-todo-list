@@ -1,6 +1,52 @@
+import {
+  getProjects,
+  setCurrentProjectIndex,
+  getCurrentProjectIndex,
+} from "./projects.js"
+
 // Internal private state
 let _dialogEl = null;
 let _formEl = null;
+
+// Render sidebar projects list
+function renderProjectsList(onProjectSwitch) {
+  // Cache elements
+  const sidebarProjectsEl = document.querySelector(".sidebar-projects");
+  if (!sidebarProjectsEl) return;
+
+  // Clear existing content
+  sidebarProjectsEl.replaceChildren();
+
+  // Query existing content
+  const allProjects = getProjects();
+  const activeIndex = getCurrentProjectIndex();
+
+  allProjects.forEach((project, index) => {
+    // Create sidebar list element
+    const projectDiv = document.createElement("div");
+    projectDiv.classList.add("sidebar-project-item");
+    projectDiv.textContent = project.title;
+
+    // Visually highlight active item
+    if (index === activeIndex) {
+      projectDiv.classList.add("active-project");
+    }
+
+    // Switch project click event
+    projectDiv.addEventListener("click", () => {
+      setCurrentProjectIndex(index);
+      renderProjectsList(onProjectSwitch);
+
+      // Trigger the task switch
+      if (typeof onProjectSwitch === "function") {
+        onProjectSwitch();
+      }
+    });
+
+    // Inject created DOM element
+    sidebarProjectsEl.appendChild(projectDiv);
+  });
+}
 
 // Initialize project modal
 function initProjectModal({ onSubmit }) {
@@ -40,4 +86,5 @@ function initProjectModal({ onSubmit }) {
 
 export {
   initProjectModal,
+  renderProjectsList,
 };
