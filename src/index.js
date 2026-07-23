@@ -1,7 +1,7 @@
 import "./style.css";
 
 import { loadCreatedTasks, renderTasks } from "./tasks.js";
-import { initProjectModal, renderSidebarProjects } from "./projects-dom.js";
+import { initProjectModal, renderProjectsList } from "./projects-dom.js";
 import { addProject, getProjects } from "./projects.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initProjectModal({
     onSubmit: (title) => {
       addProject(title);
-      renderSidebarProjects();
+      renderProjectsList();
     },
   });
 
