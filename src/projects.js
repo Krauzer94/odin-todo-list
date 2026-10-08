@@ -1,19 +1,19 @@
 const projects = [];
 let currentProjectIndex = 0;
 
-// Projects factory module
-function createProject(title) {
-  return {
-    id: Date.now(),
-    title,
-    tasks: [],
-  };
+// Project object class
+class Project {
+  constructor(title) {
+    this.id = Date.now(),
+    this.title = title,
+    this.tasks = []
+  }
 }
 
 // Initialize default project
 function initDefaultProject() {
   if (projects.length === 0) {
-    const defaultProject = createProject("First Project");
+    const defaultProject = new Project("First Project");
     projects.push(defaultProject);
     currentProjectIndex = 0;
   }
@@ -21,7 +21,7 @@ function initDefaultProject() {
 
 // Add a new project
 function addProject(title) {
-  const project = createProject(title);
+  const project = new Project(title);
   projects.push(project);
 
   // Automatically switch to new project
@@ -64,7 +64,7 @@ function deleteProject(index) {
   if (index >= 0 && index < projects.length) {
 
     // Prevent Default Project deletion
-    if (project.length <= 1) {
+    if (projects.length <= 1) {
       return false;
     }
     
@@ -79,6 +79,7 @@ function deleteProject(index) {
 }
 
 export {
+  Project,
   addProject,
   getProjects,
   getCurrentProject,
