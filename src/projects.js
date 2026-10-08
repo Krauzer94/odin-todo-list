@@ -70,8 +70,8 @@ function deleteProject(index) {
     
     // Delete the specified project
     projects.splice(index, 1);
-    if (currentProjectIndex === projects.length) {
-      currentProjectIndex = projects.length -1;
+    if (currentProjectIndex >= projects.length) {
+      currentProjectIndex = projects.length - 1;
     }
     return true;
   }
