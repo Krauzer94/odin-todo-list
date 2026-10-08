@@ -4,9 +4,9 @@ let currentProjectIndex = 0;
 // Project object class
 class Project {
   constructor(title) {
-    this.id = Date.now(),
-    this.title = title,
-    this.tasks = []
+    this.id = Date.now();
+    this.title = title;
+    this.tasks = [];
   }
 }
 
