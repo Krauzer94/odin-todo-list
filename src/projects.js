@@ -8,6 +8,11 @@ class Project {
     this.title = title;
     this.tasks = [];
   }
+
+  // Automatically calculated whenever accessed
+  get taskCount() {
+    return this.tasks.length();
+  }
 }
 
 // Initialize default project
