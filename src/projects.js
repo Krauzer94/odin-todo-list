@@ -7,7 +7,7 @@ class Project {
 
   // Instance getter
   get taskCount() {
-    return this.tasks.length();
+    return this.tasks.length;
   }
 }
 
@@ -32,7 +32,10 @@ class ProjectManager {
   }
 
   // Getter and Setter for current project index
-  static get currentIndex() { return this.#currentIndex; }
+  static get currentIndex() {
+    return this.#currentIndex;
+  }
+
   static set currentIndex(index) {
     // Allows to add validation logic
     if (index >= 0 && index < this.#projects.length) {
