@@ -1,7 +1,3 @@
-const projects = [];
-let currentProjectIndex = 0;
-
-// Project object class
 class Project {
   constructor(title) {
     this.id = Date.now();
@@ -9,86 +5,74 @@ class Project {
     this.tasks = [];
   }
 
-  // Automatically calculated whenever accessed
+  // Instance getter
   get taskCount() {
     return this.tasks.length();
   }
 }
 
-// Initialize default project
-function initDefaultProject() {
-  if (projects.length === 0) {
-    const defaultProject = new Project("First Project");
-    projects.push(defaultProject);
-    currentProjectIndex = 0;
+class ProjectManager {
+  static #projects = [];
+  static #currentIndex = 0;
+
+  // Getter for all projects
+  static get allProjects() {
+    if (this.#projects.length === 0) {
+      this.initDefaultProject();
+    }
+    return this.#projects;
   }
-}
 
-// Add a new project
-function addProject(title) {
-  const project = new Project(title);
-  projects.push(project);
-
-  // Automatically switch to new project
-  currentProjectIndex = projects.length - 1;
-
-  return project;
-}
-
-// Get all projects
-function getProjects() {
-  // Create default if empty
-  if (projects.length === 0) {
-    initDefaultProject();
+  // Getter for current project
+  static get currentProject() {
+    if (this.#projects.length === 0) {
+      this.initDefaultProject();
+    }
+    return this.#projects[this.#currentIndex];
   }
-  return projects;
-}
 
-// Get current project
-function getCurrentProject() {
-  if (projects.length === 0) {
-    initDefaultProject();
+  // Getter and Setter for current project index
+  static get currentIndex() { return this.#currentIndex; }
+  static set currentIndex(index) {
+    // Allows to add validation logic
+    if (index >= 0 && index < this.#projects.length) {
+      this.#currentIndex = index;
+    } else {
+      console.warn("Invalid project index provided.");
+    }
   }
-  return projects[currentProjectIndex];
-}
 
-// Set active project by index
-function setCurrentProjectIndex(index) {
-  if (index >= 0 && index < projects.length) {
-    currentProjectIndex = index;
+  // Helper methods
+  static initDefaultProject() {
+    if (this.#projects.length === 0) {
+      const defaultProject = new Project("First Project");
+      this.#projects.push(defaultProject);
+      this.#currentIndex = 0;
+    }
   }
-}
 
-// Get current project index
-function getCurrentProjectIndex() {
-  return currentProjectIndex;
-}
+  // Create a new project
+  static addProject(title) {
+    const project = new Project(title);
+    this.#projects.push(project);
+    this.#currentIndex = this.#projects.length - 1;
+    return project;
+  }
 
-// Delete a specific project
-function deleteProject(index) {
-  if (index >= 0 && index < projects.length) {
-
-    // Prevent Default Project deletion
-    if (projects.length <= 1) {
+  // Delete an existing project
+  static deleteProject(index) {
+    if (index >= 0 && this.#projects.length) {
+      if (this.#projects.length <= 1) {
+        return false;
+      }
+      this.#projects.splice(index, 1);
+      if (this.#currentIndex >= this.#projects.length) {
+        this.#currentIndex = this.#projects.length - 1;
+      }
       return false;
     }
-    
-    // Delete the specified project
-    projects.splice(index, 1);
-    if (currentProjectIndex >= projects.length) {
-      currentProjectIndex = projects.length - 1;
-    }
-    return true;
+    return false;
   }
-  return false;
 }
 
-export {
-  Project,
-  addProject,
-  getProjects,
-  getCurrentProject,
-  setCurrentProjectIndex,
-  getCurrentProjectIndex,
-  deleteProject,
-};
+export { Project, ProjectManager };
