@@ -22,6 +22,16 @@ class Tasks {
   }
 }
 
+// Static Manager Class module
+class TaskManager {
+  static #tasks = [];
+
+  // Getter to access all tasks safely
+  static get allTasks() {
+    return this.#tasks;
+  }
+}
+
 // Get main content
 function getMainElement() {
   return document.getElementById("content");
