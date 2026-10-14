@@ -144,45 +144,27 @@ function loadCreatedTasks() {
   renderTasks();
   initTaskDetailsModal();
 
-  // Append both tasks
-  defaultProjectTasks.push(task1);
-  defaultProjectTasks.push(task2);
-
-  renderTasks();
-  initTaskDetailsModal();
-
   // Initialize modal handlers
   initAddTaskModal({
     onSubmit: (task) => {
       if (task.editingIndex !== null) {
-        editTask(task.editingIndex, task);
+        TaskManager.updateTask(task.editingIndex, task);
       } else {
-        defaultProjectTasks.push(
-          createTask(task.title, task.description, task.dueDate, task.priority),
+        TaskManager.addTask(
+          task.title,
+          task.description,
+          task.dueDate,
+          task.priority
         );
-        renderTasks();
       }
+      renderTasks();
     },
   });
 }
 
-// Edit a previously created task
-function editTask(index, updatedTask) {
-  defaultProjectTasks[index] = createTask(
-    updatedTask.title,
-    updatedTask.description,
-    updatedTask.dueDate,
-    updatedTask.priority,
-  );
-
-  // Re-render after editing
-  renderTasks();
-}
-
-// Delete a previously created task
-function deleteTask(index) {
-  defaultProjectTasks.splice(index, 1);
-  renderTasks();
-}
-
-export { loadCreatedTasks, deleteTask };
+export {
+  Task,
+  TaskManager,
+  loadCreatedTasks,
+  renderTasks
+};
