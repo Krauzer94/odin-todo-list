@@ -15,6 +15,11 @@ class Tasks {
     this.priority = priority;
     this.isComplete = false;
   }
+
+  // Instance Method to toggle task completion status
+  toggleComplete(){
+    this.isComplete = !this.isComplete;
+  }
 }
 
 // Get main content
