@@ -1,3 +1,4 @@
+// Main Constructor Class module
 class Project {
   constructor(title) {
     this.id = Date.now();
@@ -11,6 +12,7 @@ class Project {
   }
 }
 
+// Static Manager Class module
 class ProjectManager {
   static #projects = [];
   static #currentIndex = 0;
