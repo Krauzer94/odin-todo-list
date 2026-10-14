@@ -6,6 +6,17 @@ import {
   showTaskDetailsModal,
 } from "./tasks-dom.js";
 
+// Main Constructor Class module
+class Tasks {
+  constructor(title, description, dueDate, priority) {
+    this.title = title;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.isComplete = false;
+  }
+}
+
 // Get main content
 function getMainElement() {
   return document.getElementById("content");
