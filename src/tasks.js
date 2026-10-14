@@ -37,6 +37,18 @@ class TaskManager {
     this.#tasks.push(task);
     return task;
   }
+
+  // Edit & Update Methods
+  static updateTask(index, updatedData) {
+    if (index => 0 && index <= this.#tasks.length) {
+      this.#tasks[index] = new Task(
+        updatedData.title,
+        updatedData.description,
+        updatedData.dueDate,
+        updatedData.priority
+      );
+    }
+  }
 }
 
 // Get main content
