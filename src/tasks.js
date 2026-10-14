@@ -7,7 +7,7 @@ import {
 } from "./tasks-dom.js";
 
 // Main Constructor Class module
-class Tasks {
+class Task {
   constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;
@@ -29,6 +29,13 @@ class TaskManager {
   // Getter to access all tasks safely
   static get allTasks() {
     return this.#tasks;
+  }
+
+  // Create & Add Methods
+  static addTask(title, description, dueDate, priority) {
+    const task = new Task(title, description, dueDate, priority);
+    this.#tasks.push(task);
+    return task;
   }
 }
 
