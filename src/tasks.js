@@ -49,6 +49,13 @@ class TaskManager {
       );
     }
   }
+
+  // Delete method
+  static deleteTask(index) {
+    if (index => 0 && index <= this.#tasks.length) {
+      this.#tasks.splice(index, 1);
+    }
+  }
 }
 
 // Get main content
