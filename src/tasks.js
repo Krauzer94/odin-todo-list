@@ -58,13 +58,10 @@ class TaskManager {
   }
 }
 
-// Get main content
+// Get main content element
 function getMainElement() {
   return document.getElementById("content");
 }
-
-// Store default project
-const defaultProjectTasks = [];
 
 // Render available tasks
 function renderTasks() {
@@ -84,28 +81,29 @@ function renderTasks() {
 
   // Project task list
   const taskList = document.createElement("ul");
-  defaultProjectTasks.forEach((task, index) => {
+  TaskManager.allTasks.forEach((task, index) => {
     const listItem = document.createElement("li");
 
-    // All task priorities
+    // Task details string
     const taskDetails = document.createElement("span");
     taskDetails.textContent = `${task.title} | ${task.description} | ${task.dueDate} | ${task.priority}`;
 
-    // Edit element operation
+    // Edit button operation
     const editButton = document.createElement("button");
     editButton.textContent = "✏️";
     editButton.addEventListener("click", () => {
       showEditTaskModal(task, index);
     });
 
-    // Delete element operation
+    // Delete button operation
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "❌";
     deleteButton.addEventListener("click", () => {
-      deleteTask(index);
+      TaskManager.deleteTask(index);
+      renderTasks();
     });
 
-    // Details info operation
+    // Details button operation
     const detailsButton = document.createElement("button");
     detailsButton.textContent = "ℹ️";
     detailsButton.addEventListener("click", () => {
@@ -127,23 +125,24 @@ function renderTasks() {
   });
 }
 
-// Load created tasks contents
+// Load initial tasks
 function loadCreatedTasks() {
-  // Create 1st task
-  const task1 = createTask(
+  // Create some default tasks
+  TaskManager.addTask(
     "Trash disposal",
     "Take out the organic and dry waste",
     "2026-05-19",
     "Low",
   );
-
-  // Create 2nd task
-  const task2 = createTask(
+  TaskManager.addTask(
     "Week groceries",
     "Create a list of groceries to buy",
     "2026-05-16",
     "High",
   );
+
+  renderTasks();
+  initTaskDetailsModal();
 
   // Append both tasks
   defaultProjectTasks.push(task1);
