@@ -1,8 +1,4 @@
-import {
-  getProjects,
-  setCurrentProjectIndex,
-  getCurrentProjectIndex,
-} from "./projects.js"
+import { Project, ProjectManager } from "./projects.js";
 
 // Internal private state
 let _dialogEl = null;
@@ -10,16 +6,14 @@ let _formEl = null;
 
 // Render sidebar projects list
 function renderProjectsList(onProjectSwitch) {
-  // Cache elements
+  // Cache and clear elements
   const sidebarProjectsEl = document.querySelector(".sidebar-projects");
   if (!sidebarProjectsEl) return;
-
-  // Clear existing content
   sidebarProjectsEl.replaceChildren();
 
-  // Query existing content
-  const allProjects = getProjects();
-  const activeIndex = getCurrentProjectIndex();
+  // Access state via ProjectManager
+  const allProjects = ProjectManager.allProjects;
+  const activeIndex = ProjectManager.currentIndex;
 
   allProjects.forEach((project, index) => {
     // Create sidebar list element
@@ -34,16 +28,16 @@ function renderProjectsList(onProjectSwitch) {
 
     // Switch project click event
     projectDiv.addEventListener("click", () => {
-      setCurrentProjectIndex(index);
+      // Use static method to update index
+      ProjectManager.currentIndex = index;
       renderProjectsList(onProjectSwitch);
 
-      // Trigger the task switch
+      // Trigger the task switch callback
       if (typeof onProjectSwitch === "function") {
         onProjectSwitch();
       }
     });
 
-    // Inject created DOM element
     sidebarProjectsEl.appendChild(projectDiv);
   });
 }
