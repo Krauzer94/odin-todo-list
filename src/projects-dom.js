@@ -1,6 +1,5 @@
-import { Project, ProjectManager } from "./projects.js";
+import { ProjectManager } from "./projects.js";
 
-// Internal private state
 let _dialogEl = null;
 let _formEl = null;
 
@@ -44,21 +43,18 @@ function renderProjectsList(onProjectSwitch) {
 
 // Initialize project modal
 function initProjectModal({ onSubmit }) {
-  // Cache elements
+  // Cache and basic validation
   _dialogEl = document.getElementById("addProjectDialog");
   _formEl = document.querySelector(".add-project-form");
-
-  // Basic validation
   const closeBtn = document.getElementById("addProjectCloseBtn");
   const cancelBtn = document.getElementById("addProjectCancelBtn");
 
-  // Close modal function
+  // Close modal module
   function closeModal() {
     _dialogEl.close();
     _formEl.reset();
   }
 
-  // Event listeners
   closeBtn.addEventListener("click", closeModal);
   cancelBtn.addEventListener("click", closeModal);
 
@@ -72,7 +68,6 @@ function initProjectModal({ onSubmit }) {
       return;
     }
 
-    // Invoke callback
     onSubmit(title);
     closeModal();
   });
