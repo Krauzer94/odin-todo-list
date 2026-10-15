@@ -7,7 +7,6 @@ let _detailsDialogEl = null;
 
 // Initialize task modal
 function initAddTaskModal({ onSubmit } = {}) {
-  // Cache elements
   _dialogEl = document.getElementById("addTaskDialog");
   _formEl = _dialogEl?.querySelector(".add-task-form");
 
@@ -116,11 +115,8 @@ function showEditTaskModal(task, index) {
 
 // Initialize task details modal
 function initTaskDetailsModal() {
-  // Cache elements
   _detailsDialogEl = document.getElementById("taskDetailsDialog");
   if (!_detailsDialogEl) return;
-
-  // Cache elements
   const closeDetailsBtn = document.getElementById("closeDetailsBtn");
   const detailsCancelBtn = document.getElementById("detailsCancelBtn");
 
