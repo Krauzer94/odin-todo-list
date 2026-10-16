@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { Project, ProjectManager } from "./projects.js";
+import { ProjectManager } from "./projects.js";
 import { loadCreatedTasks } from "./tasks.js";
 import { initProjectModal, renderProjectsList } from "./projects-dom.js";
 
