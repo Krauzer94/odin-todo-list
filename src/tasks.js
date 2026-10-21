@@ -1,3 +1,4 @@
+import { ProjectManager } from "./projects.js";
 import {
   initAddTaskModal,
   showAddTaskModal,
@@ -24,37 +25,31 @@ class Task {
 
 // Static Manager Class module
 class TaskManager {
-  static #tasks = [];
-
-  // Getter to access all tasks safely
   static get allTasks() {
-    return this.#tasks;
+    return ProjectManager.currentProject.tasks;
   }
 
   // Create & Add Methods
   static addTask(title, description, dueDate, priority) {
     const task = new Task(title, description, dueDate, priority);
-    this.#tasks.push(task);
+    ProjectManager.currentProject.addTask(task);
     return task;
   }
 
   // Edit & Update Methods
   static updateTask(index, updatedData) {
-    if (index => 0 && index <= this.#tasks.length) {
-      this.#tasks[index] = new Task(
-        updatedData.title,
-        updatedData.description,
-        updatedData.dueDate,
-        updatedData.priority
-      );
-    }
+    const updatedTask = new Task(
+      updatedData.title,
+      updatedData.description,
+      updatedData.dueDate,
+      updatedData.priority
+    );
+    ProjectManager.currentProject.updateTask(index, updatedTask);
   }
 
   // Delete method
   static deleteTask(index) {
-    if (index => 0 && index <= this.#tasks.length) {
-      this.#tasks.splice(index, 1);
-    }
+    ProjectManager.currentProject.deleteTask(index);
   }
 }
 
@@ -63,16 +58,18 @@ function getMainElement() {
   return document.getElementById("content");
 }
 
-// Render available tasks
+// Render available tasks for current active project
 function renderTasks() {
   // Cache and clear
   const mainContent = getMainElement();
+  if (!mainContent) return;
   mainContent.replaceChildren();
+  const currentProject = ProjectManager.currentProject;
 
-  // Project title
-  const projetTitle = document.createElement("h2");
-  projetTitle.textContent = "Default Project";
-  mainContent.appendChild(projetTitle);
+  // Active project title
+  const projectTitle = document.createElement("h2");
+  projectTitle.textContent = currentProject.title;
+  mainContent.appendChild(projectTitle);
 
   // Add taks button
   const addTaskButton = document.createElement("button");
