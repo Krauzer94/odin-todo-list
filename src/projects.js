@@ -10,6 +10,21 @@ class Project {
   get taskCount() {
     return this.tasks.length;
   }
+
+  // Task management methods
+  addTask(task) {
+    this.tasks.push(task);
+  }
+  updateTask(index, updatedTask) {
+    if (index >= 0 && index < this.tasks.length) {
+      this.tasks[index] = updatedTask;
+    }
+  }
+  deleteTask(index) {
+    if (index >= 0 && index < this.tasks.length) {
+      this.tasks.splice(index, 1);
+    }
+  }
 }
 
 // Static Manager Class module
