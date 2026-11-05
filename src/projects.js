@@ -37,6 +37,11 @@ class ProjectManager {
   // Load from localStorage immediately
   static #projects = loadStorage();
   static #currentIndex = 0;
+  
+  // Trigger method to storage
+  static save() {
+    saveStorage(this.#projects);
+  }
 
   // Getter for all projects
   static get allProjects() {
