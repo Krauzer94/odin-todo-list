@@ -1,4 +1,4 @@
-import { loadStorage, saveStorage } from "./storage";
+import { loadStorage, saveStorage } from "./storage.js";
 
 // Main Constructor Class module
 class Project {
