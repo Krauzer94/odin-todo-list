@@ -1,3 +1,5 @@
+import { loadStorage, saveStorage } from "./storage";
+
 // Main Constructor Class module
 class Project {
   constructor(title) {
@@ -14,15 +16,18 @@ class Project {
   // Task management methods
   addTask(task) {
     this.tasks.push(task);
+    ProjectManager.save();
   }
   updateTask(index, updatedTask) {
     if (index >= 0 && index < this.tasks.length) {
       this.tasks[index] = updatedTask;
+      ProjectManager.save();
     }
   }
   deleteTask(index) {
     if (index >= 0 && index < this.tasks.length) {
       this.tasks.splice(index, 1);
+      ProjectManager.save();
     }
   }
 }
