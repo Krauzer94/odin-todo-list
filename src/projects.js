@@ -34,7 +34,8 @@ class Project {
 
 // Static Manager Class module
 class ProjectManager {
-  static #projects = [];
+  // Load from localStorage immediately
+  static #projects = loadStorage();
   static #currentIndex = 0;
 
   // Getter for all projects
@@ -94,6 +95,7 @@ class ProjectManager {
       if (this.#currentIndex >= this.#projects.length) {
         this.#currentIndex = this.#projects.length - 1;
       }
+      this.save();
       return false;
     }
     return false;
