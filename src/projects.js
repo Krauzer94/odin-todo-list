@@ -79,6 +79,7 @@ class ProjectManager {
       const defaultProject = new Project("First Project");
       this.#projects.push(defaultProject);
       this.#currentIndex = 0;
+      this.save();
     }
   }
 
@@ -87,6 +88,7 @@ class ProjectManager {
     const project = new Project(title);
     this.#projects.push(project);
     this.#currentIndex = this.#projects.length - 1;
+    this.save();
     return project;
   }
 
