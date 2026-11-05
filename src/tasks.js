@@ -122,21 +122,23 @@ function renderTasks() {
   });
 }
 
-// Load initial tasks
+// Load initial default project tasks
 function loadCreatedTasks() {
-  // Create some default tasks
-  TaskManager.addTask(
-    "Trash disposal",
-    "Take out the organic and dry waste",
-    "2026-05-19",
-    "Low",
-  );
-  TaskManager.addTask(
-    "Week groceries",
-    "Create a list of groceries to buy",
-    "2026-05-16",
-    "High",
-  );
+  // Create some default tasks only if there are none
+  if (TaskManager.allTasks.length === 0) {
+    TaskManager.addTask(
+      "Trash disposal",
+      "Take out the organic and dry waste",
+      "2026-05-19",
+      "Low",
+    );
+    TaskManager.addTask(
+      "Week groceries",
+      "Create a list of groceries to buy",
+      "2026-05-16",
+      "High",
+    );
+  }
 
   renderTasks();
   initTaskDetailsModal();
