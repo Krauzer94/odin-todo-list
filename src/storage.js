@@ -46,3 +46,5 @@ function loadStorage() {
     return [];
   }
 }
+
+export { saveStorage, loadStorage };
